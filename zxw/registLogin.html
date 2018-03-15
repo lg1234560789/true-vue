@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width,minimum-scale=0.5,maximum-scale=1.0,initial-scale=1.0,user-scalable=no" />
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" type="text/css" href="icons/iconfont.css"/>
+		<style type="text/css">
+			body{font-family: "微软雅黑";height:920px;width:640px;background:#f3eff0;}
+			#out{height:920px;width:640px;margin:0 auto;}
+			header{height:88px;background:#a90506;color:#fff;line-height: 88px;}
+			header h2{font-weight:normal;height:34px;width:200px;float: left;margin-left:178px;font-size: 34px;}
+			header i{display: block;height:34px;width:34px;margin-left:25px;float: left;}
+			section{height:832px;width:640px;overflow: hidden;}
+			section .warp{height:86px;width:580px;margin-left:30px;margin-top:30px;background:#fff;border-radius: 10px;}
+			section .div1{height:86px;width:150px;color:#515151;font-size: 26px;text-align: center;line-height: 86px;float:left}
+			section .div2{height:86px;width:430px;border:none;font-size: 26px;color:#9b9b9b;}
+			.regisbtn{height:90px;color:#fff;font-size:36px;width:580px;background: url(img/bg.jpg) repeat-x;margin-top:183px;border-radius: 10px;margin-left:30px;}
+		</style>
+	</head>
+	<body>
+		<div id="out">
+			<header>
+				<i class="iconfont">&#xe619;</i>
+				<h2>用户注册</h2>
+			</header>
+			<section>
+				<div class="warp">
+					<div class="div1">账户名称:</div><input type="text" placeholder="请输入账户" class="username div2">
+				</div>
+				<div class="warp">
+					<div class="div1">登录密码:</div><input type="text" placeholder="请输入密码" class="pass div2">
+				</div>
+				<div class="warp">
+					<div class="div1">确认密码:</div><input type="text" placeholder="请输入密码" class="passqr div2">
+				</div>
+				<input type="button" value="确定注册" class="regisbtn">
+			</section>
+		</div>
+	</body>
+		<script src="js/common.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js" ></script>
+		<script type="text/javascript" src="js/zepto-1.1.6.min.js" ></script>
+		<script src="js/touch.js"></script>
+		<script>
+			$(window).resize(function(){
+				bodyScale();
+			})
+			$(window).load(function(){
+				bodyScale();
+				$('.regisbtn').click(function(){
+					var accountName = $('section input').eq(0).val();
+					var pass = $('section input').eq(1).val();
+					var passAgain = $('section input').eq(2).val();
+					if(pass!=passAgain){
+						alert('两次密码输入不一致!')
+					}else{
+						$.ajax({//用户注册
+							type:"post",
+							url:"http://datainfo.duapp.com/shopdata/userinfo.php",
+							async:true,
+							dataType:"json",
+							data:{status:'register',userID:accountName,password:pass},
+							success:function(data){
+								if(data == 0){
+									alert('用户名重名');
+								}else if(data == 1){
+									alert('注册成功');
+									window.location.href='denglu.html';
+								}else{
+									alert('数据库报错');
+								}
+							}
+						});
+					}
+				})
+			})
+
+	</script>
+</html>

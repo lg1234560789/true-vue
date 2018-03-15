@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width,maximum-scale=1.0,minimum-scale=0.5,initial-scale=1,user-scalable=no">
+		<title>商品资料</title>
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<link rel="stylesheet" type="text/css" href="icons/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="css/swiper-3.3.1.min.css">
+		<link rel="stylesheet" type="text/css" href="css/animate.min.css">
+		<style>
+			html{
+				height:100%;
+			}
+			body{
+				width:640px;
+				height:100%;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-box-align: center;
+			}
+			header{
+				position: relative;
+				font-weight: bold;
+				width:100%;
+				height: 86px;
+				line-height: 86px;
+				color:#fff;
+				font-size: 36px;
+				text-align: center;
+				background: url(img/images/bg_03.jpg) repeat-x;
+			}
+			header .shopping-num{
+				position:absolute;
+				right:25px;
+				top:15px;
+				height:20px;
+				width:20px;
+				color:#fff;
+				line-height: 20px;
+				text-align: center;
+			}
+			head:after{
+				content:"";
+				clear:both;
+				height: 0;
+				visibility: hidden;
+				overflow: hidden;
+				display: block;
+			}
+			header span{
+				position: absolute;
+				right:24px;
+				top:10px;
+				float: right;
+				width:106px;
+				height:56px;
+				line-height: 56px;
+				/*border:3px solid #a02c2c;*/
+				text-align: center;
+				border-radius:18px;
+				box-shadow:0 0 1px 1px #d62a2a,0 0 1px 2px #d94748,0 0 1px 3px #a02c2c,0 0 1px 4px #921211;
+			}
+			header span .shop-icon{
+				font-size:36px;
+			}
+			header .back{
+				font-size:36px;
+				float:left;
+				margin-left:30px;
+			}
+			section{
+				width:100%;
+				-webkit-box-flex: 1;
+				overflow: auto;
+			}
+			section .banner{
+				height:364px;
+				width:100%;
+				overflow: hidden;
+			}
+			section .banner .swiper-container{
+				width:100%;
+				height:100%;
+				overflow: hidden;
+			}
+			section .banner .swiper-slide{
+				width:100%;
+				height:100%;
+				position:relative;
+			}
+			section .banner img{
+				width:100%;
+				height: 364px;
+			}
+			section .goodsdetail{
+				padding-top:50px;
+				padding-left:28px;
+				background: #f3eff0;
+				height: 222px;
+				color:#464445;
+				font-size: 30px;
+				font-weight: bold;
+			}
+			section .goodsdetail span:nth-child(2){
+				color:#af1d1d;
+			}
+			section .goodsdetail span:nth-child(3){
+				text-decoration: line-through;
+				margin-left:28px;
+			}
+			section .goodsdetail p{
+				height: 80px;
+				line-height: 80px;
+				width:560px;
+				overflow: hidden;
+			}
+			section .godetail{
+				width: 100%;
+				height:100px;
+				line-height: 100px;
+				position:relative;
+				font-size: 24px;
+			}
+			section .godetail img:nth-child(1){
+				position:absolute;
+				left:21px;
+				top:31px;
+			}
+			section .godetail .ar{
+				position:absolute;
+				right:35px;
+				top:35px;
+				transition:all 0.5s;
+			}
+			section .godetail .ar.act{
+				transform: rotate(90deg);
+			}
+			section .godetail span{
+				margin-left:90px;
+			}
+			section .detail{
+				position:relative;
+				display: none;
+				padding:20px;
+			}
+			section .detail img{
+				max-width:600px;
+			}
+			footer{
+				width:100%;
+				height:98px;
+				background:#a3a3a3;
+			}
+			footer .tianjiagouwuche{
+				margin-top:8px;
+				margin-left:100px;
+				width:435px;
+				height: 82px;
+				line-height: 82px;
+				text-align: center;
+				border-radius: 30px;
+				background:url(img/bg3.gif) repeat-x;
+				color:#fff;
+				font-size:30px;
+			}
+		</style>
+	</head>
+	<body>
+		<header><i class="iconfont back">&#xe619;</i>商品资料<span><i class="iconfont shop-icon">&#xe61b;</i></span><p class="shopping-num">0</p></header>
+		<section>
+			<div class="banner"></div>
+			<div class="goodsdetail"></div>
+			<div class="godetail"><img src="img/images/inf_03.jpg"/><span>查看商品详情</span><img class="ar" src="img/images/arrow_07.jpg"></div>
+			<div class="detail"></div>
+		</section>
+		<footer>
+			<div class="tianjiagouwuche">添加到购物车</div>
+		</footer>
+		<script type="text/javascript" src="js/jquery.min.js" ></script>
+		<script type="text/javascript" src="js/common.js" ></script>
+		<script type="text/javascript" src="js/zepto-1.1.6.min.js"></script>
+		<script type="text/javascript" src="js/touch.js" ></script>
+		<script src="js/swiper-3.3.1.jquery.min.js"></script>
+		<script type="text/javascript" src="js/iscroll.js" ></script>
+		<script>
+			$(window).load(function(){
+				bodyScale();
+				var mySwiper = new Swiper ('.swiper-container', { 
+					direction: 'horizontal', loop: true,
+		//			initialSlide:2,speed:2000,freeModeSticky:true,freeMode:true,
+					// 如果需要分页器
+					pagination: '.swiper-pagination', 
+	//					paginationClickable:true,
+	//					paginationHide:true,
+	//				paginationType:"fraction",
+					// 如果需要前进后退按钮 
+	//				nextButton: '.swiper-button-next',
+	//				prevButton: '.swiper-button-prev', 
+	//				keyboardControl : true,
+					// 如果需要滚动条
+	//				scrollbar: '.swiper-scrollbar',
+	//				onInit: function(swiper){ //Swiper2.x的初始化是onFirstInit 		
+	//					swiperAnimateCache(swiper); //隐藏动画元素 		
+	//					swiperAnimate(swiper); //初始化完成开始动画
+	//				}, 
+	//				onSlideChangeEnd: function(swiper){
+	//				 	swiperAnimate(swiper); //每个slide切换结束时也运行当前slide动画
+	//				}
+				})
+			});
+			window.onresize=function(){
+				bodyScale();
+			}
+			//通过localStorage中存放的商品id，获取对应商品信息插入页面
+			var id = localStorage.getItem('id');
+			getgoodsdetail(id);
+			//点击获取商品详情
+			$('.godetail').on('touchend',function(){
+				if($('.detail').css('display') == "none"){
+					$('.detail').slideDown(500);
+					$(this).find('.ar').addClass('act');
+				}else{
+					$('.detail').slideUp(500);
+					$(this).find('.ar').removeClass('act');
+				}
+			})
+			//添加到购物车事件
+			var single_num = 0;//初始化单个商品的数量
+			var userID = JSON.parse(localStorage.getItem('login')).username;
+			$.ajax({
+				type:"get",
+				url:"http://datainfo.duapp.com/shopdata/getCar.php",
+				dataType:"jsonp",
+				data:{userID:userID},
+				success:function(da){
+					$.each(da,function(index){
+						if(da[index].goodsID == id){
+							single_num = parseInt(da[index].number);
+						}
+					})
+				}
+			});
+			$('.tianjiagouwuche').on('touchend',function(){
+				if(localStorage.getItem('login')){
+					//更新单个商品的数量;
+					single_num++;
+					var userID = JSON.parse(localStorage.getItem('login')).username;
+					updateShop(userID,id,single_num);
+					//每次点击的时候都更新购物车中商品的数量
+					getShopNum(userID);
+				}else{
+					alert('请先登录');
+					window.location.href="denglu.html";
+				}
+				//获取购物车总的商品数量
+				if(localStorage.getItem('login')){
+					var userID = JSON.parse(localStorage.getItem('login')).username;
+					getShopNum(userID);
+				}
+			})
+			//获取购物车总的商品数量
+			if(localStorage.getItem('login')){
+				var userID = JSON.parse(localStorage.getItem('login')).username;
+				getShopNum(userID);
+			}
+			//点击调到购物车页面-首页也有此点击事件
+				$('.shop-icon').on('touchend',function(){
+					if(localStorage.getItem('login')){
+						window.location.href = "shopping.html";
+					}else{
+						alert('请先登录');
+						window.location.href="denglu.html";
+					}
+				})
+			//点击返回上一页
+			$('.back').on('tap',function(){
+				history.back();
+			})
+			//banner滑动效果-swiper
+		</script>
+	</body>
+</html>

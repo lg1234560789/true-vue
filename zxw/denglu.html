@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width,minimum-scale=0.5,maximum-scale=1.0,initial-scale=1.0,user-scalable=no" />
+		<link rel="stylesheet" href="css/reset.css">
+		<style>
+			body{font-family: "微软雅黑";height:920px;width:640px;background:#f3eff0;}
+			#out{height:920px;width:640px;margin:0 auto;}
+			header{font-weight:normal;width:640px;font-size: 34px;text-align:center;height:88px;background:#a90506;color:#fff;line-height: 88px;}
+			section{height:802px;width:640px;background:#f3eff0;overflow: hidden;padding-top:30px;}
+			section .warp{padding-left:20px;border:none;color:#c0c0c0;font-size:26px;height:86px;width:560px;margin-left:30px;background:#fff;border-radius:10px;}
+			section .dluser{margin-bottom: 4px;}
+			.showpass{height:37px;width:37px;border:none;}
+			.formm{height:50px;width:357px;margin-left:48px;margin-top:48px;position: relative;}
+			.formm span{color:#5a5c5b;font-size:28px;position: absolute;top:0;left:53px;}
+			.formm a{position: absolute;top:0;left:205px;color:#fe0f53;font-size:28px;}
+			.showpass2{height:37px;width:37px;border:none;}
+			.jizhu{color:#5a5c5b;font-size:28px;}
+			.on_load{height:90px;color:#fff;font-size:36px;width:580px;background: url(img/bg.jpg) repeat-x;margin-top:56px;border-radius: 10px;margin-left:30px;}
+			.zhuce{height:90px;color:#fff;font-size:36px;width:580px;background: url(img/bg2.gif) repeat-x;margin-top:13px;border-radius: 10px;margin-left:30px;}
+		</style>
+	</head>
+	<body>
+		<div id="out">
+			<header>开心摇摇用户登录</header>
+			<section>
+				<input type="text" placeholder="请输入账户" class="dluser warp">
+				<input type="password" placeholder="请输入密码" class="dlmm warp">
+				  <div class="formm">
+					<input type="checkbox"  class="showpass">
+					<span>显示密码</span>
+					<a href="#">忘记密码？</a>
+				  </div>
+				  <div class="formm">
+					<input type="checkbox"  class="showpass2" checked="checked">
+					<span class="jizhu">记住密码自动登录</span>
+				</div>
+				<input type="button" value="登录" class="on_load">
+				<input type="button" value="注册" class="zhuce">
+			</section>
+		</div>
+	</body>
+	<script src="js/common.js"></script>
+	<script type="text/javascript" src="js/jquery.min.js" ></script>
+	<script type="text/javascript" src="js/zepto-1.1.6.min.js" ></script>
+	<script src="js/touch.js"></script>
+	<script>
+		$(window).resize(function(){
+			bodyScale();
+		})
+		$(window).load(function(){
+			bodyScale();
+			//显示密码
+			$('.showpass').on('touchend',function(){
+				if($(this).prop("checked") == false){
+					//显示密码
+					$('.dlmm').prop('type','text');
+				}else{
+					//隐藏密码
+					$('.dlmm').prop('type','password');
+				}
+			})
+			//登陆
+			$('.on_load').on('touchend',function(){
+				var username = $('.dluser').val();
+				var pass = $('.dlmm').val();
+				$.ajax({//用户登录
+					type:"get",
+					url:"http://datainfo.duapp.com/shopdata/userinfo.php",
+					async:true,
+					dataType:"json",
+					data:{status:'login',userID:username,password:pass},
+					success:function(data){
+						if(data == 0){
+							alert('用户名不存在');
+						}else if(data == 2){
+							alert('用户名不符');
+						}else{
+							var inf_obj = {username:username};
+							var inf_str = JSON.stringify(inf_obj);
+							localStorage.setItem('login',inf_str);
+							window.location.href = "myshow.html";
+						}
+					}
+				});
+			})
+			//注册
+			$('.zhuce').on('touchend',function(){
+				window.location.href = "registLogin.html";
+			})
+		})
+	</script>
+</html>

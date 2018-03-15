@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>开始场景</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width,minimum-scale=0.5,maximum-scale=1.0,initial-scale=1.0,user-scalable=no" />
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/swiper-3.3.1.min.css">
+<link rel="stylesheet" href="css/animate.min.css">
+<style>
+	body,html{width:100%;height:100%}
+	.sw,.s1,.s2,.s3,.sw2{width:100%;height:100%;}
+	.s1,.s2,.s3,.s4,.s5{background:#f8f3f7;position:relative}
+	#s1-img1{position: absolute;top:150px;left:188px;}
+	#s1-img2{position: absolute;top:469px;left:179px;}
+	#s1-img3{position: absolute;bottom:0;}
+
+	#s2-img1{position: absolute;top:0;}
+	#s2-img2{position: absolute;top:586px;left:175px;}
+	#s2-img3{position: absolute;top:668px;left:29px;}
+	
+
+
+	#s3-img1{position: absolute;top:69px;left:302px;}
+	#s3-img2{position: absolute;top:229px;left:210px;}
+	#s3-img3{position: absolute;top:299px;left:193px;}
+	#s3-img4{position: absolute;top:609px;left:71px;}
+ 	
+ 	#s4-img1{position: absolute;top:107px;left:207px;}
+	#s4-img2{position: absolute;top:251px;left:127px;}
+	#s4-img3{position: absolute;top:610px;left:165px;}
+	
+	#s5-img1{position: absolute;top:129px;left:300px;}
+	#s5-img2{position: absolute;top:350px;left:100px;}
+	#s5-img3{position: absolute;top:677px;left:176px;}
+</style>
+</head>
+<body>
+<div class="swiper-container sw">
+	<div class="swiper-wrapper sw2"> 
+		<div class="swiper-slide s1">
+			<img src="img/2_03.jpg" class="ani" swiper-animate-effect="bounceInDown" swiper-animate-duration="1s" swiper-animate-delay=""  id="s1-img1">
+			<img src="img/2_06.jpg" class="ani" swiper-animate-effect="bounceInLeft" swiper-animate-duration="1s" swiper-animate-delay="0.5s" id="s1-img2">
+			<img src="img/2_08.png" class="ani" swiper-animate-effect="bounceInRight" swiper-animate-duration="1s" swiper-animate-delay="0.5s" id="s1-img3">
+		</div> 
+		<div class="swiper-slide s2">
+			<img src="img/3_02.png" class="ani" swiper-animate-effect="bounceInDown" swiper-animate-duration="1s" swiper-animate-delay="" id="s2-img1">
+			<img src="img/3_05.png" class="ani" swiper-animate-effect="bounceInDown" swiper-animate-duration="1s" swiper-animate-delay="" id="s2-img2">
+			<img src="img/3_09.png" class="ani" swiper-animate-effect="bounceInLeft" swiper-animate-duration="1s" swiper-animate-delay="1s" id="s2-img3">
+		</div> 
+		<div class="swiper-slide s3">
+			<img src="img/bg.png" class="ani" swiper-animate-effect="bounceInDown" swiper-animate-duration="1s" swiper-animate-delay="" id="s3-img1">
+			<img src="img/3_1.png" class="ani" swiper-animate-effect="bounceInRight" swiper-animate-duration="1s" swiper-animate-delay="" id="s3-img2">
+			<img src="img/333.gif" class="ani" swiper-animate-effect="bounceInRight" swiper-animate-duration="1s" swiper-animate-delay="" id="s3-img3">
+			<img src="img/3_00.png" class="ani" swiper-animate-effect="bounceInUp" swiper-animate-duration="1s" swiper-animate-delay="" id="s3-img4">
+		</div> 
+		<div class="swiper-slide s4">
+			<img src="img/5_03.png" class="ani" swiper-animate-effect="bounceInDown" swiper-animate-duration="1s" swiper-animate-delay="" id="s4-img1">
+			<img src="img/5_07.png" class="ani" swiper-animate-effect="bounceInRight" swiper-animate-duration="1s" swiper-animate-delay="" id="s4-img2">
+			<img src="img/5_11.png" class="ani" swiper-animate-effect="bounceInUp" swiper-animate-duration="1s" swiper-animate-delay="" id="s4-img3">
+		</div> 
+		<div class="swiper-slide s5">
+			<img src="img/arrow.png" class="ani" swiper-animate-effect="bounceInDown" swiper-animate-duration="1s" swiper-animate-delay="" id="s5-img1">
+			<img src="img/new.png" class="ani" swiper-animate-effect="bounceInRight" swiper-animate-duration="1s" swiper-animate-delay="" id="s5-img2">
+			<img src="img/bank.png" class="ani start" swiper-animate-effect="bounceInUp" swiper-animate-duration="1s" swiper-animate-delay="" id="s5-img3">
+		</div> 
+	</div> 
+
+</div> 
+</body>
+<script type="text/javascript" src="js/jquery.min.js" ></script>
+<script type="text/javascript" src="js/zepto.js"></script>
+<script type="text/javascript" src="js/touch.js" ></script>
+<script type="text/javascript" src="js/swiper-3.3.1.jquery.min.js"></script>
+<script type="text/javascript" src="js/swiper.animate1.0.2.min.js"></script>
+<script src="js/common.js"></script>
+<script>
+	window.onload=window.onresize=function(){
+		bodyScale();
+		$('.start').on('touchend',function(){
+			window.location.href = "index.html";
+		})
+		var mySwiper = new Swiper ('.swiper-container', { 
+			direction: 'vertical',
+		    pagination: '.swiper-pagination', 
+			onInit: function(swiper){ //Swiper2.x的初始化是onFirstInit 
+				swiperAnimateCache(swiper); //隐藏动画元素 		
+				swiperAnimate(swiper); //初始化完成开始动画
+			},
+			onSlideChangeEnd: function(swiper){
+			 	swiperAnimate(swiper); //每个slide切换结束时也运行当前slide动画
+			} 
+		}) 
+	}
+</script>
+</html>

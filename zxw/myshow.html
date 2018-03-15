@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width,maximum-scale=1.0,minimum-scale=0.5,initial-scale=1,user-scalable=no">
+		<title>我的秀</title>
+		<link rel="stylesheet" href="css/common.css" />
+		<link rel="stylesheet" href="icons/iconfont.css" />
+		<style type="text/css">
+			html{
+				height:100%;
+			}
+			body{
+				height:100%;
+				position: relative;
+			}
+			#out{
+				position:absolute;
+				height: 100%;
+				width:640px;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-box-align: center;
+			}
+			header{
+				position: relative;
+				font-weight: bold;
+				width:100%;
+				height: 86px;
+				line-height: 86px;
+				color:#fff;
+				font-size: 36px;
+				text-align: center;
+				background: url(img/images/bg_03.jpg) repeat-x;
+			}
+			header span{
+				position: absolute;
+				right:24px;
+				top:14px;
+				float: right;
+				width:106px;
+				height:56px;
+				line-height: 56px;
+				/*border:3px solid #a02c2c;*/
+				text-align: center;
+				border-radius:18px;
+				box-shadow:0 0 1px 1px #d62a2a,0 0 1px 2px #d94748,0 0 1px 3px #a02c2c,0 0 1px 4px #921211;
+			}
+			header .chongzhi{
+				font-style: normal;
+				font-size: 30px;
+				color:#fff;
+			}
+			section{
+				-webkit-box-flex: 1;
+				height:736px;
+				width:100%;
+				background:#f7f7f7;
+			}
+			section .inf{
+				margin-left:44px;
+				margin-top:60px;
+				width:566px;
+				height:168px;
+			}
+			section .inf img.touxiang{
+				width:168px;
+				height:168px;
+				float:left;
+			}
+			section .inf .nicheng_yue{
+				margin-left:32px;
+				font-size: 34px;
+				color:#232524;
+				float:left;
+			}
+			section .inf .nicheng_yue p{
+				margin-top:30px;
+			}
+			section .inf .nicheng_yue .yue span{
+				color:#f30002;
+			}
+			section .list{
+				background:#fff;
+				margin-left:36px;
+				border:2px solid #dedede;
+				border-radius: 25px;
+				margin-top:84px;
+				height:353px;
+				width:563px;
+			}
+			section .list li{
+				padding-left:30px;
+				font-size: 36px;
+				height:87px;
+				line-height:87px;
+				position:relative;
+			}
+			section .list li:not(:last-child){
+				border-bottom:2px solid #dedede;
+			}
+			section .list li .arrow{
+				position:absolute;
+				right:24px;
+				top:30px;
+			}
+			footer{
+				height:98px;
+				width:100%;
+				background: #484850;
+			}
+			footer li{
+				float:left;
+				width:100px;
+				height:86px;
+				text-align: center;
+				padding-top:10px;
+				margin-left:20px;
+			}
+			footer .foot-ico{
+				color:#fff;
+				font-size: 48px;
+			}
+			footer li p{
+				color:#fff;
+				font-size: 24px;
+			}
+			footer li.active{
+				background:#ab1514;
+			}
+			#zhezhao{
+				width:100%;
+				height:100%;
+				position: absolute;
+				z-index: 1;
+				opacity: 0.5;
+				background:#000;
+				display: none;
+			}
+			#select{
+				position:absolute;
+				left:50%;
+				top:50%;
+				margin-left:-232px;
+				margin-top:-187px;
+				z-index: 2;
+				width:464px;
+				height:374px;
+				border: 1px solid #000;
+				border-radius: 10px;
+				background: #e8e8e8;
+				display: none;
+			}
+			#select h1{
+				margin-top:10px;
+				font-size: 26px;
+				height:68px;
+				width:464px;
+				line-height: 68px;
+				text-align: center;
+			}
+			#select hr{
+				width:372px;
+			}
+			#select p{
+				font-weight: bold;
+				color:#303030;
+				margin-top:38px;
+				margin-left:32px;
+				font-size:24px;
+			}
+			#select input{
+				width:114px;
+				height:117px;
+				opacity: 0;
+			}
+			#select .camera{
+				background: url(img/images/camera_03.jpg) no-repeat;
+			}
+			#select .photo{
+				background: url(img/images/photo_05.jpg) no-repeat;
+			}
+			#select ol{
+				margin-top:30px;
+				float:left;
+				margin-left:70px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="zhezhao"></div>
+		<div id="select">
+			<h1>选择操作</h1>
+			<hr>
+			<ol>
+				<div class="camera"><input type="file"  accept="images/*" capture="camera" /></div>
+				<p>相机</p>
+			</ol>
+			<ol>
+				<div class="photo"><input type="file"  capture="photo"  /></div>
+				<p>相册</p>
+			</ol>
+		</div>
+		<div id="out">
+			<header>我的秀<span><i class="chongzhi">充值</i></span></header>
+			<section>
+				<div class="inf">
+					<img class="touxiang" src="img/images/images/inf_img_03.jpg"/>
+					<div class="nicheng_yue">
+						<p class="nicheng">昵称：未知</p>
+						<p class="yue">余额：<span>0</span></p>
+					</div>
+				</div>
+				<div class="list">
+					<ul>
+						<li>
+							<p>我的订单</p>
+							<img class="arrow" src="img/images/arrow_07.jpg"/>
+						</li>
+						<li>
+							<p>我的优惠券</p>
+							<img class="arrow" src="img/images/arrow_07.jpg"/>
+						</li>
+						<li>
+							<p>浏览记录</p>
+							<img class="arrow" src="img/images/arrow_07.jpg"/>
+						</li>
+						<li>
+							<p>我的收藏</p>
+							<img class="arrow" src="img/images/arrow_07.jpg"/>
+						</li>
+					</ul>
+				</div>
+			</section>
+			<footer>
+				<li><i class="iconfont foot-ico">&#xe644;</i><p>首页</p></li>
+				<li><i class="iconfont foot-ico">&#xe692;</i><p>分类</p></li>
+				<li><i class="iconfont foot-ico">&#xe61b;</i><p>购物车</p></li>
+				<li><i class="iconfont foot-ico">&#xe646;</i><p>我的秀</p></li>
+				<li><i class="iconfont foot-ico">&#xe660;</i><p>更多</p></li>
+			</footer>
+		</div>
+		
+		<script type="text/javascript" src="js/jquery.min.js" ></script>
+		<script type="text/javascript" src="js/common.js" ></script>
+		<script type="text/javascript" src="js/zepto-1.1.6.min.js"></script>
+		<script type="text/javascript" src="js/touch.js" ></script>
+		<script type="text/javascript" src="js/iscroll.js" ></script>
+		<script>
+			$(window).load(function(){
+				bodyScale();
+				$('footer li').click(function(){
+					var iIndex = $('footer li').index($(this));
+					$(this).addClass('active').siblings().removeClass('active');
+					if(iIndex == 0){
+						window.location.href = "index.html";
+					}else if(iIndex ==1){
+						window.location.href = "index.html";
+					}else if(iIndex ==2){
+						window.location.href = "shopping.html";
+					}else if(iIndex ==3){
+						var inf_str = localStorage.getItem('login');
+						var inf_obj = JSON.parse(inf_str);
+						if(inf_obj != null){
+							window.location.href = "myshow.html";
+						}else{
+							alert('您还未登陆');	
+							window.location.href = "denglu.html";
+						}
+					}else if(iIndex ==4){
+						window.location.href = "choujiang.html";
+					}
+				})
+				//上传头像
+				$('.touxiang').on('touchend',function(){
+					$('#zhezhao').css('display','block');
+					$('#select').css('display','block');
+				})
+				$('#zhezhao').on('touchend',function(){
+					$('#zhezhao').css('display','none');
+					$('#select').css('display','none');
+				})
+			})
+			window.onresize=function(){
+				bodyScale();
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width,maximum-scale=1.0,minimum-scale=0.5,initial-scale=0.5,user-scalable=no">
+		<title>首页-商品列表</title>
+		<link rel="stylesheet" href="css/common.css" />
+		<link rel="stylesheet" href="icons/iconfont.css" />
+		<link rel="stylesheet" media="all and (max-width:1023px)" href="css/index-phone.css" />
+		<link rel="stylesheet" media="all and (min-width:1024px)" href="css/index-pad.css" />
+	</head>
+	<body>
+		<header>新品上市<span><i class="iconfont shop-icon">&#xe61b;</i></span><p class="shopping-num">0</p></header>
+		<section>
+			<nav>
+				<li><i class="iconfont ico"></i><span class="text">新品</span></li>
+				<li><i class="iconfont ico"></i><span class="text">皮衣</span></li>
+				<li><i class="iconfont ico"></i><span class="text">外套</span></li>
+				<li><i class="iconfont ico"></i><span class="text">连衣裙</span></li>
+				<li><i class="iconfont ico"></i><span class="text">女鞋</span></li>
+				<li><i class="iconfont ico"></i><span class="text">女上衣</span></li>
+				<li><i class="iconfont ico"></i><span class="text">男上衣</span></li>
+				<li><i class="iconfont ico"></i><span class="text">T Shirt</span></li>
+				<li><i class="iconfont ico"></i><span class="text">箱包</span></li>
+				<li><i class="iconfont ico"></i><span class="text">运动</span></li>
+			</nav>
+			<div class="content">
+				
+			</div>
+		</section>
+		<footer>
+			<li><i class="iconfont foot-ico">&#xe644;</i><p>首页</p></li>
+			<li><i class="iconfont foot-ico">&#xe692;</i><p>分类</p></li>
+			<li><i class="iconfont foot-ico">&#xe61b;</i><p>购物车</p></li>
+			<li><i class="iconfont foot-ico">&#xe646;</i><p>我的秀</p></li>
+			<li><i class="iconfont foot-ico">&#xe660;</i><p>更多</p></li>
+		</footer>
+		<!--<script type="text/javascript" src="js/zepto.js" ></script>-->
+		<script type="text/javascript" src="js/jquery.min.js" ></script>
+		<script type="text/javascript" src="js/common.js" ></script>
+		<script type="text/javascript" src="js/zepto-1.1.6.min.js"></script>
+		<script type="text/javascript" src="js/touch.js" ></script>
+		<script type="text/javascript" src="js/iscroll.js" ></script>
+		<script>
+			$(window).load(function(){
+				//首页中导航部分图标获取
+				$.ajax({//商品分类
+					type:"get",
+					url:"http://datainfo.duapp.com/shopdata/getclass.php",
+					async:true,
+					dataType:"json",
+					success:function(data){
+						for(var i = 0;i < 10;i++){
+							$("nav li").eq(i).find("i").html(data[i].icon);
+						}
+					}
+				});
+				//首页中列表部分获取商品列表
+				getgoods(0,0);
+				//切换商品分类
+				$('nav li').on("touchend",function(){
+					var iIndex = $('nav li').index($(this));
+					$('section').find('.content').empty();
+					getgoods(iIndex,0);
+				})
+				bodyScale();
+				$('footer li').on('touchend',function(){
+					var iIndex = $('footer li').index($(this));
+					$(this).addClass('active').siblings().removeClass('active');
+					if(iIndex == 0){
+						window.location.href = "index.html";
+					}else if(iIndex ==1){
+						window.location.href = "index.html";
+					}else if(iIndex ==2){
+						window.location.href = "shopping.html";
+					}else if(iIndex ==3){
+						var inf_str = localStorage.getItem('login');
+						var inf_obj = JSON.parse(inf_str);
+						if(inf_obj != null){
+							window.location.href = "myshow.html";
+						}else{
+							alert('您还未登陆');	
+							window.location.href = "denglu.html";
+						}
+					}else if(iIndex ==4){
+						window.location.href = "choujiang.html";
+					}
+				})
+				//点击商品后跳转到对应商品详情页
+				$(document).on('tap','img',function(){
+					var iIndex = $('.content img').index($(this));
+					var id = $(this).data('id');
+					localStorage.setItem('id',id);
+					window.location.href = "goods.html";
+				})
+				//页面初始化时初始化购物车商品数量
+				if(localStorage.getItem('shopping-num')){
+					$('.shopping-num').html(localStorage.getItem('shopping-num'));
+				}else{
+					localStorage.setItem('shopping-num',0);
+				}
+				//点击调到购物车页面-商品页也有此点击事件
+				$('.shop-icon').on('tap',function(){
+					window.location.href = "shopping.html";
+				})
+				//获取购物车总的商品数量
+				var userID = JSON.parse(localStorage.getItem('login')).username;
+				getShopNum(userID);
+//				var myScroll = new IScroll("section", {
+//                  mouseWheel: true, 
+//                  scrollbars: true
+//	   			});
+////	 			setTimeout(function () { myScroll.refresh();}, 0);
+//				$(document).on("touchend",function(){
+//	   				if(myScroll.y > 50){
+//	   					alert("下拉刷新");
+//	   				}
+//	   				if(myScroll.y<myScroll.maxScrollY-50){
+//	   					alert("上啦加载");
+//	   				}
+//	   			})
+			})
+			
+			window.onresize=function(){
+				bodyScale();
+			}
+		</script>
+	</body>
+</html>

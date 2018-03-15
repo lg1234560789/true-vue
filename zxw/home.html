@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <!-- //  <script src="vue.js"></script> -->
+    <style>
+        *{
+            margin:0;
+
+
+
+
+
+
+
+                          padding:0;
+        }
+        html,body{
+            width:100%;
+            height:100%;
+            overflow:hidden;
+        }
+
+        
+    </style>
+</head>
+<body>
+
+   
+
+
+<div id="app">
+
+
+
+    <router-link to="/foo">Go to Foo</router-link>
+    <router-link to="/bar">Go to Bar</router-link> 
+  <router-view></router-view>
+</div>                     
+
+    
+    <script type="text/javascript">
+        Vue.component("m-tree",{
+                props:["data"],
+               
+                template:'<div><ul><li v-for= "item of data"><ul v-if=""item.children><li v-for="item2 of item.children"><span>{{item2.title}}</span></li></ul><div><span>{{item.title}}</span></div></li></ul></div>'
+            }
+        )
+        //指定图标的配置和数据
+     
+        var data=[{
+            title:"我的音乐",
+            children:[{
+                title:"周杰伦",
+                children:"发如雪"
+            }], children:[{
+                title:"昂街",
+                children:[{
+                    title:"一场游戏一场梦"
+
+                }]
+            }]
+        },{
+            title:"我的电影",
+            children:[{
+                title:"周杰伦",
+                children:"发如雪"
+            }], children:[{
+                title:"昂街",
+                children:[{
+                    title:"一场游戏一场梦"
+                }]
+            }]
+        }]
+
+        const Foo = { template: '<div>foo</div>' }
+const Bar = { template: '<div>bar</div>' }
+
+// 2. 定义路由
+// 每个路由应该映射一个组件。 其中"component" 可以是
+// 通过 Vue.extend() 创建的组件构造器，
+// 或者，只是一个组件配置对象。
+// 我们晚点再讨论嵌套路由。
+const routes = [
+  { path: '/foo', component: Foo },
+  { path: '/bar', component: Bar }
+]
+
+// 3. 创建 router 实例，然后传 `routes` 配置
+// 你还可以传别的配置参数, 不过先这么简单着吧。
+const router = new VueRouter({
+  routes // （缩写）相当于 routes: routes
+})
+
+        new Vue({
+            el:"#app",
+            router,
+            data:{
+                hello:"刘冠是一个伟大的人",
+                treeList:data
+            }
+        
+        })
+       
+        //初始化echarts实例
+       
+
+        //3.温度检测情况
+console.log(axios)
+axios.get('http://datainfo.duapp.com/shopdata/getclass.php')
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+  
+
+    </script>
+</body>
+</html>

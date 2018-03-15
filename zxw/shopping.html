@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>购物车</title>
+		<link rel="stylesheet" href="css/common.css" />
+		<link rel="stylesheet" href="icons/iconfont.css" />
+		<style>
+			html{
+				height:100%;
+			}
+			body{
+				width:100%;
+				height:100%;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-box-align: center;
+			}
+			header{
+				position: relative;
+				font-weight: bold;
+				width:100%;
+				height: 86px;
+				line-height: 86px;
+				color:#fff;
+				font-size: 36px;
+				text-align: center;
+				background: url(img/images/bg_03.jpg) repeat-x;
+			}
+			header > span{
+				position: absolute;
+				right:24px;
+				top:14px;
+				float: right;
+				width:106px;
+				height:56px;
+				line-height: 56px;
+				/*border:3px solid #a02c2c;*/
+				text-align: center;
+				border-radius:18px;
+				box-shadow:0 0 1px 1px #d62a2a,0 0 1px 2px #d94748,0 0 1px 3px #a02c2c,0 0 1px 4px #921211;
+			}
+			header .shop_number{
+				font-size:26px;
+			}
+			header .total_price1{
+				margin-left:30px;
+				font-size:26px;
+			}
+			header .total_price2{
+				color:#a71716;
+				font-size:26px;
+			}
+			header .chongzhi{
+				font-style: normal;
+				font-size: 30px;
+				color:#fff;
+			}
+			header .shop-list{
+				position:absolute;
+				height:88px;
+				width:100%;
+				background:#747474;
+			}
+			section{
+				padding-top:100px;
+				width:100%;
+				-webkit-box-flex: 1;
+				overflow: auto;
+			}
+			section .shopping-lis{
+				height:180px;
+				width:584px;
+				padding-left:32px;
+				padding-right:24px;
+				padding-top:25px;
+				padding-bottom: 25px;
+				border-bottom: 2px solid #aaaaaa;
+				font-size:30px;
+			}
+			section .shopping-lis img{
+				float:left;
+				width:176px;
+				height:176px;
+			}
+			section .shopping-lis .div_right {
+				float:left;
+			}
+			.div_right{
+				padding-left:26px;
+			}
+			.div_right .price{
+				color:#aa1c1b;
+			}
+			.div_right .ico_reduce,.ico_plus{
+				float:left;
+				width:56px;
+				height:42px;
+				line-height:42px;
+				text-align: center;
+				background:#626262;
+				border-radius: 10px;
+				color:#fff;
+			}
+			.div_right .ico_plus{
+				margin-left:5px;
+			}
+			.div_right .operation{
+				float:left;
+				width:74px;
+				height:40px;
+				text-align: center;
+				border:1px solid #ccc;
+				border-radius: 5px;
+				margin-left:5px;
+				font-size:26px;
+			}
+			.div_right .goodsNum{
+				float:left;
+			}
+			.div_right p:first-child{
+				width:300px;
+				height:30px;
+				overflow: hidden;
+			}
+			.div_right p,span,input{
+				margin-top:10px;
+			}
+			section .del{
+				float:right;
+				width:40px;
+				height:40px;
+				margin-right:30px;
+			}
+			section .del-ico{
+				font-size:40px;
+				color:#000;
+			}
+			footer{
+				position:relative;
+				height:98px;
+				width:100%;
+				background: #484850;
+			}
+			footer li{
+				float:left;
+				width:100px;
+				height:86px;
+				text-align: center;
+				padding-top:10px;
+				margin-left:20px;
+			}
+			footer .foot-ico{
+				color:#fff;
+				font-size: 48px;
+			}
+			footer li p{
+				color:#fff;
+				font-size: 24px;
+			}
+			footer li.active{
+				background:#ab1514;
+			}
+		</style>
+	</head>
+	<body>
+		<header>购物车<span><i class="chongzhi">结算</i></span><div class="shop-list"></div></header>
+		<section></section>
+		<footer>
+			<li><i class="iconfont foot-ico">&#xe644;</i><p>首页</p></li>
+			<li><i class="iconfont foot-ico">&#xe692;</i><p>分类</p></li>
+			<li><i class="iconfont foot-ico">&#xe61b;</i><p>购物车</p></li>
+			<li><i class="iconfont foot-ico">&#xe646;</i><p>我的秀</p></li>
+			<li><i class="iconfont foot-ico">&#xe660;</i><p>更多</p></li>
+		</footer>
+		<script type="text/javascript" src="js/jquery.min.js" ></script>
+		<script type="text/javascript" src="js/common.js" ></script>
+		<script type="text/javascript" src="js/zepto-1.1.6.min.js"></script>
+		<script type="text/javascript" src="js/touch.js" ></script>
+		<script type="text/javascript" src="js/iscroll.js" ></script>
+		<script>
+			$(window).load(function(){
+				bodyScale();
+				var userID = JSON.parse(localStorage.getItem('login')).username;
+				$('footer li').click(function(){
+					var iIndex = $('footer li').index($(this));
+					$(this).addClass('active').siblings().removeClass('active');
+					if(iIndex == 0){
+						window.location.href = "index.html";
+					}else if(iIndex ==1){
+						window.location.href = "index.html";
+					}else if(iIndex ==2){
+						window.location.href = "shopping.html";
+					}else if(iIndex ==3){
+						var inf_str = localStorage.getItem('login');
+						var inf_obj = JSON.parse(inf_str);
+						if(inf_obj != null){
+							window.location.href = "myshow.html";
+						}else{
+							alert('您还未登陆');	
+							window.location.href = "denglu.html";
+						}
+					}else if(iIndex ==4){
+						window.location.href = "choujiang.html";
+					}
+				})
+				//从服务器获取购物车商品信息
+				getShop(userID);
+				//点击加减改变商品的数量
+				var num_index = 1;
+				//点击使商品数量减少
+				$('section').on('touchend','.ico_reduce',function(){
+					num_index = $(this).parent().find('.operation').val();
+					num_index--;
+					if(num_index<1){
+						num_index = 1;
+					}else{
+						var id = $(this).parent().parent().find('img').eq(0).data().id;
+						updateShop(userID,id,num_index);
+	//					getShop(userID);
+						$(this).parent().find('.operation').val(num_index);
+						//重新计算页面总金额
+	//					var n = $(this).parent().find('.operation').val();//商品数量
+						var price = parseInt($(this).parent().find(".price").html());//单个商品的价格
+						var h = parseInt($(".total_price2").html());
+						var h_a = h - price;
+						$(".total_price2").html(h_a);
+					}
+					var a = $('.hehe').html();
+					var a_1 = parseInt(a)-1;
+					$('.hehe').html(a_1);
+					localStorage.setItem('allNum',a_1);
+				})
+				//点击使商品数量增加
+				$('section').on('touchend','.ico_plus',function(){
+					num_index = $(this).parent().find('.operation').val();
+					num_index++;
+					var id = $(this).parent().parent().find('img').eq(0).data().id;
+					updateShop(userID,id,num_index);
+//					getShop(userID);
+					$(this).parent().find('.operation').val(num_index);
+					//重新计算页面总金额
+					var price = parseInt($(this).parent().find(".price").html());//单个商品的价格
+					var h = parseInt($(".total_price2").html());
+					var h_a = h + price;
+					$(".total_price2").html(h_a);
+					var a = $('.hehe').html();
+					var a_1 = parseInt(a)+1;
+					$('.hehe').html(a_1);
+					localStorage.setItem('allNum',a_1);
+				})
+				//点击删除按钮
+				$('section').on('touchend','.del',function(){
+					var id = $(this).parent().find('img').data().id;
+					updateShop(userID,id,0);
+					$(this).parent().remove();
+					//重新计算页面总金额
+					var n = $(this).parent().find('.operation').val();//商品数量
+					var price = parseInt($(this).parent().find(".price").html());//单个商品的价格
+					var h = parseInt($(".total_price2").html());
+					var h_a = h - price * n;
+					$(".total_price2").html(h_a);
+					var a = $('.hehe').html();
+					var a_1 = parseInt(a)-n;
+					$('.hehe').html(a_1);
+					localStorage.setItem('allNum',a_1);
+				})
+				//点击购物车中的商品图片会跳到商品详情页
+				$('section').on('tap','img',function(){
+					var id = $(this).data().id;
+					localStorage.setItem('id',id);
+					window.location.href = "goods.html";
+				})
+			})
+			$(window).resize(function(){
+				bodyScale();
+			})
+		</script>
+	</body>
+</html>

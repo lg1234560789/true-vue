@@ -1,0 +1,169 @@
+/*==========================Header_start===========================*/
+html{
+	height:100%;
+}
+body{
+	width:1024px;
+	height:100%;
+}
+header{
+	position: relative;
+	font-weight: bold;
+	width:100%;
+	height: 86px;
+	line-height: 86px;
+	color:#fff;
+	font-size: 36px;
+	text-align: center;
+	background: url(../img/images/bg_03.jpg) repeat-x;
+}
+head:after{
+	content:"";
+	clear:both;
+	height: 0;
+	visibility: hidden;
+	overflow: hidden;
+	display: block;
+}
+header .shopping-num{
+	position:absolute;
+	right:25px;
+	top:15px;
+	height:20px;
+	width:20px;
+	color:#fff;
+	line-height: 20px;
+	text-align: center;
+}
+header span{
+	position: absolute;
+	right:24px;
+	top:10px;
+	float: right;
+	width:106px;
+	height:56px;
+	line-height: 56px;
+	/*border:3px solid #a02c2c;*/
+	text-align: center;
+	border-radius:18px;
+	box-shadow:0 0 1px 1px #d62a2a,0 0 1px 2px #d94748,0 0 1px 3px #a02c2c,0 0 1px 4px #921211;
+}
+header span .shop-icon{
+	font-size:36px;
+}
+/*==========================Header_end===========================*/
+
+
+
+/*==========================Section_start===========================*/
+section{
+	height:660px;
+	width:100%;
+	display: -webkit-box;
+	-webkit-box-orient: horizontal;
+}
+section nav{
+	height:660px;
+	width:176px;
+	background:#9a9fa5 ;
+}
+section nav li{
+	margin-left:30px;
+	height:50px;
+	margin-top:10px;
+}
+section nav li span{
+	font-size:24px;
+}
+section nav li:hover .ico{
+	color:#fff;
+}
+section nav li:hover .text{
+	color:#fff;
+}
+section nav li .ico{
+	font-size:30px;
+}
+section .content{
+	height: 660px;
+	-webkit-box-flex: 1;
+	overflow: auto;
+}
+section .content:after{
+	content:"";
+	clear:both;
+	height: 0;
+	visibility: hidden;
+	overflow: hidden;
+	display: block;
+}
+section .content div{
+	width:200px;
+	height:334px;
+	float:left;
+	margin-left:60px;
+	margin-top:20px;
+}
+section .content div img{
+	width:198px;
+	height:228px;
+	border:1px solid #cbcbcd;
+}
+section .content div p{
+	color:#3a3a3a;
+	font-size:20px;
+	width:200px;
+	height:50px;
+	line-height: 30px;
+	text-align: center;
+}
+section .content div span{
+	float:left;
+	color:#d41213;
+	font-size:24px;
+	margin-top:20px;
+	display: block;
+	width:100px;
+	height:40px;
+	text-align: left;
+	line-height: 40px;
+}
+section .content div strong{
+	font-weight: 100;
+	float:right;
+	font-size: 24px;
+	width:100px;
+	height:40px;
+	text-align: right;
+	line-height: 40px;
+	text-decoration: line-through;
+}
+	
+/*==========================Section_end===========================*/
+/*==========================Footer_start===========================*/
+footer{
+	position: relative;
+	height:90px;
+	width:100%;
+	background: #484850;
+}
+footer li{
+	float:left;
+	width:100px;
+	height:56px;
+	text-align: center;
+	padding-top:10px;
+	margin-left:20px;
+}
+footer .foot-ico{
+	color:#fff;
+	font-size: 48px;
+}
+footer li p{
+	color:#fff;
+	font-size: 24px;
+}
+footer li.active{
+	background:#ab1514;
+}
+/*==========================Footer_end===========================*/

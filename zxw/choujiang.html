@@ -1,0 +1,316 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="icons/iconfont.css">
+		<style>
+			body{
+				width:640px;
+				height:920px;
+			}
+			header{
+				position: relative;
+				font-weight: bold;
+				width:100%;
+				height: 86px;
+				line-height: 86px;
+				color:#fff;
+				font-size: 36px;
+				text-align: center;
+				background: url(img/images/bg_03.jpg) repeat-x;
+			}
+			head:after{
+				content:"";
+				clear:both;
+				height: 0;
+				visibility: hidden;
+				overflow: hidden;
+				display: block;
+			}
+			header span{
+				position: absolute;
+				right:24px;
+				top:10px;
+				float: right;
+				width:160px;
+				height:56px;
+				line-height: 56px;
+				/*border:3px solid #a02c2c;*/
+				text-align: center;
+				border-radius:18px;
+				box-shadow:0 0 1px 1px #d62a2a,0 0 1px 2px #d94748,0 0 1px 3px #a02c2c,0 0 1px 4px #921211;
+			}
+			header span .shop-icon{
+				font-size:36px;
+			}
+			header .back{
+				font-size:36px;
+				float:left;
+				margin-left:30px;
+			}
+			section{
+				width:640px;
+				height:570px;
+				background:#F3EFF0;
+			}
+			.raffle{
+				width:600px;
+				height:570px;
+				background:#A90506;
+				margin:20px 20px 0 20px;
+			}
+			.raffle li{
+				width:200px;
+				height:190px;
+				background:#D51216;
+				float:left;
+				line-height:190px;
+				text-align: center;
+				font-size:36px;
+			}
+			.raffle li:nth-child(5){
+				background:#640000;
+				color:#fff;
+			}
+			.regist{
+				width:580px;
+				height:90px;
+				line-height:90px;
+				margin:183px auto 0;
+				display:block;
+				text-align: center;
+				color:#fff;
+				font-size:32px;
+				border-radius: 10px;
+				background-color:#B40607;
+			}
+			.back{
+				position: absolute;
+				left:15px;
+				top:0;
+				height:42px;
+				width:40px;
+				background:url(../img/fanhui.jpg) no-repeat left top;
+			}	
+			.raffle .yel{
+				background:yellow;
+			}
+			.winner{
+				width:600px;
+				height:400px;
+				background:rgb(255,73,72);
+				margin:20px 20px 0 20px;
+				overflow: hidden;
+			}
+			.winner span{
+				font-size:38px;
+				float:left;
+				margin-left:10px;
+			}
+			.winner p span:nth-child(1){
+				width:120px;
+			}
+			.winner p span:nth-child(2){
+				margin-left:30px;
+				width:90px;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				white-space: nowrap;
+			}
+			.winner .one{
+				overflow: hidden;
+				margin:20px;
+				width:600px;
+				height:40px;
+				line-height:40px;
+			}
+		</style>
+	</head>
+	<body>
+		<header><i class="iconfont back">&#xe619;</i>转盘抽奖<span>退出登录</span></header>
+		<section>
+			<ul class="raffle">
+				<li>一等奖</li>
+				<li>二等奖</li>
+				<li>三等奖</li>
+				<li>八等奖</li>
+				<li class="toraffle">抽奖</li>
+				<li>四等奖</li>
+				<li>七等奖</li>
+				<li>六等奖</li>
+				<li>五等奖</li>
+			</ul>
+			<div class="winner"></div>
+		</section>
+	</body>
+	<script src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/zepto.js" ></script>
+	<script type="text/javascript" src="js/common.js" ></script>
+	<script src="js/touch.js"></script>
+		<script type="text/javascript">
+			function bodyScale(){
+				var devicewidth=document.documentElement.clientWidth;
+				var scale=devicewidth/640;
+				document.body.style.zoom=scale;
+			}
+			window.onload=window.onresize=function(){
+				bodyScale();
+				//点击返回
+				$('.back').on('touchend',function(){
+					history.back();
+				});
+				//点击退出登录
+				$('header span').on('touchend',function(){
+					localStorage.removeItem('login');
+				})
+				//点击抽奖
+		  	 	$('.toraffle').on('touchend',function(){
+					var logi = localStorage.getItem('login');
+					if(logi){//用户已登录
+						var userID = JSON.parse(localStorage.getItem('login')).username;
+						//判断是否已经抽过奖
+						$.ajax({
+							type:'get',
+							url:'http://datainfo.duapp.com/lottery/fruitsubmit.php',
+							dataType:'json',
+							data:{fruit:0,userID:userID},
+							success:function(data){
+								if(data == 2){//可以抽奖
+									var speed=50,
+										index=0,
+										timer=null,
+										n=Math.ceil(Math.random()*8),
+										lis=$(".raffle li");
+										//先上传中奖信息
+										//获取userID
+										$.ajax({
+											type:'get',
+											url:'http://datainfo.duapp.com/lottery/fruitsubmit.php',
+											dataType:'json',
+											data:{fruit:n,userID:userID},
+											success:function(data){
+												if(data == 3){
+													alert('数据提交报错');
+												}else{
+													arr1=getarr();
+													//数组转化
+											  	 	function getarr(){
+											 			var arr=[];
+											 			arr[0]=lis[0];
+											 			arr[1]=lis[1];
+											 			arr[2]=lis[2];
+											 			arr[3]=lis[5];
+											 			arr[4]=lis[8];
+											 			arr[5]=lis[7];
+											 			arr[6]=lis[6];
+											 			arr[7]=lis[3];
+											 			return $(arr);
+											 		}
+											  	 	//move函数
+											  	 	function move(){
+														timer=setTimeout(function(){
+															speed+=50;
+															arr1.removeClass();
+															arr1.eq(index).addClass('yel');
+															index++;
+															if(speed>500){
+																speed=500;
+															}
+															if(index>7){
+																index=0;
+															}
+															if(index==n){
+																if(speed>=500){
+																	setTimeout(function(){
+																		alert('恭喜您中了'+n+"等奖");
+																		$('.raffle li').removeClass('yel');
+																	},100)
+																}else{
+																	move();
+																}
+															}
+															else{
+																move();
+															}
+														},speed)
+													}
+													move();
+												}
+											}
+										})
+								}else{
+									alert('您已抽过奖');
+								}
+							}
+						})
+					}
+					else{//若没成功登录，则跳转到登录页面
+						alert('请先登录再来玩哦');
+						window.location.href = "denglu.html";
+					}
+				})
+		  	 	//获取中奖信息
+				function getInf(){
+					$.ajax({
+						type:"get",
+						url:"http://datainfo.duapp.com/lottery/getsuerfr.php",
+						dataType:"jsonp",
+						success:function(data){
+							var arr = [];
+							$.each(data,function(index){
+								var timer = data[index].timer;
+								var arr = timer.split(' ');
+								var date = arr[0].split('-');
+								var date_str = date[1]+"月"+date[2]+"日";
+								var time = arr[1].split(':');
+								var time_str = time[0]+":"+time[1];
+								console.log(date);
+								var win = (data[index].fruit)%8;
+								switch(win){
+									case 1: 
+										win='一';
+										break;
+									case 2: 
+										win="二";
+										break;
+									case 3: 
+										win="三";
+										break;
+									case 4:
+										win="四";
+										break;
+									case 5: 
+										win="五";
+										break;
+									case 6: 
+										win="六";
+										break;
+									case 7: 
+										win="七";
+										break;
+									case 0: 
+										win="八";
+										break;
+									default:
+										break;
+								}
+								var fruit = $('<span>'+win+'等奖</span>');
+								var userID = $('<span>'+data[index].userID+'</span>');
+								var time = $('<span>'+date_str+" "+time_str+'</span>');
+								var p = $('<p class="one"></p>');
+								p.append(fruit);
+								p.append(userID);
+								p.append(time);
+								$('.winner').append(p);
+							})
+							console.log(data[0]);
+						}
+					});
+				}		
+				getInf();
+			}	
+		</script>
+</html>

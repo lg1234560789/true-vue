@@ -1,0 +1,127 @@
+{
+	"index.html": {
+		"resources": [
+			"icons/iconfont.woff",
+			"img/images/bg_03.jpg",
+			"js/common.js",
+			"js/jquery.min.js",
+			"css/common.css",
+			"css/index-phone.css",
+			"js/iscroll.js",
+			"icons/iconfont.css",
+			"js/touch.js",
+			"js/zepto-1.1.6.min.js",
+			"css/index-pad.css",
+			"goods.html",
+			"shopping.html",
+			"denglu.html",
+			"myshow.html",
+			"choujiang.html"
+		],
+		"refer": [
+			"goods.html",
+			"shopping.html",
+			"denglu.html",
+			"myshow.html",
+			"choujiang.html"
+		]
+	},
+	"goods.html": {
+		"resources": [
+			"img/images/inf_03.jpg",
+			"img/bg3.gif",
+			"img/images/arrow_07.jpg",
+			"index.html",
+			"shopping.html",
+			"css/animate.min.css",
+			"js/swiper-3.3.1.jquery.min.js",
+			"css/swiper-3.3.1.min.css",
+			"js/common.js",
+			"js/jquery.min.js",
+			"css/common.css",
+			"js/iscroll.js",
+			"icons/iconfont.css",
+			"js/touch.js",
+			"js/zepto-1.1.6.min.js",
+			"icons/iconfont.woff",
+			"img/images/bg_03.jpg"
+		],
+		"refer": [
+			"index.html",
+			"shopping.html"
+		]
+	},
+	"shopping.html": {
+		"resources": [
+			"index.html",
+			"icons/iconfont.woff",
+			"img/images/bg_03.jpg",
+			"js/common.js",
+			"js/jquery.min.js",
+			"css/common.css",
+			"js/iscroll.js",
+			"icons/iconfont.css",
+			"js/touch.js",
+			"js/zepto-1.1.6.min.js",
+			"choujiang.html",
+			"myshow.html"
+		],
+		"refer": [
+			"index.html",
+			"choujiang.html",
+			"myshow.html"
+		]
+	},
+	"denglu.html": {
+		"resources": [
+			"img/bg2.gif",
+			"img/bg.jpg",
+			"css/reset.css",
+			"myshow.html",
+			"registLogin.html"
+		],
+		"refer": [
+			"myshow.html",
+			"registLogin.html"
+		]
+	},
+	"myshow.html": {
+		"resources": [
+			"img/images/photo_05.jpg",
+			"img/images/camera_03.jpg",
+			"img/images/arrow_07.jpg",
+			"img/images/images/inf_img_03.jpg",
+			"shopping.html",
+			"choujiang.html",
+			"index.html"
+		],
+		"refer": [
+			"shopping.html",
+			"choujiang.html",
+			"index.html"
+		]
+	},
+	"choujiang.html": {
+		"resources": [
+			"js/zepto.js",
+			"shopping.html",
+			"index.html",
+			"myshow.html",
+			"denglu.html"
+		],
+		"refer": [
+			"shopping.html",
+			"index.html",
+			"myshow.html",
+			"denglu.html"
+		]
+	},
+	"registLogin.html": {
+		"resources": [
+			"denglu.html"
+		],
+		"refer": [
+			"denglu.html"
+		]
+	}
+}
